@@ -17,7 +17,7 @@ public class HttpServer {
    *  from where the java command was invoked.
    */
   public static final String WEB_ROOT =
-    System.getProperty("user.dir") + File.separator  + "webroot";
+    System.getProperty("user.dir") + File.separator  + "src/main/webroot";
 
   // shutdown command
   private static final String SHUTDOWN_COMMAND = "/SHUTDOWN";
