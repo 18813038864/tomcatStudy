@@ -8,6 +8,11 @@
     <artifactId>tomcatStudy</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
+        <dependency>
+            <groupId>tomcat</groupId>
+            <artifactId>catalina</artifactId>
+            <version>4.1.9</version>
+        </dependency>
     </dependencies>
 
     <build>
