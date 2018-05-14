@@ -83,8 +83,7 @@ public class HttpProcessor {
    * @exception IOException if an input/output error occurs
    * @exception ServletException if a parsing error occurs
    */
-  private void parseHeaders(SocketInputStream input)
-    throws IOException, ServletException {
+  private void parseHeaders(SocketInputStream input) throws IOException, ServletException {
     while (true) {
       HttpHeader header = new HttpHeader();;
 
@@ -95,8 +94,7 @@ public class HttpProcessor {
           return;
         }
         else {
-          throw new ServletException
-            (sm.getString("httpProcessor.parseHeaders.colon"));
+          throw new ServletException(sm.getString("httpProcessor.parseHeaders.colon"));
         }
       }
 
@@ -141,8 +139,7 @@ public class HttpProcessor {
 
     // Parse the incoming request line
     input.readRequestLine(requestLine);
-    String method =
-      new String(requestLine.method, 0, requestLine.methodEnd);
+    String method = new String(requestLine.method, 0, requestLine.methodEnd);
     String uri = null;
     String protocol = new String(requestLine.protocol, 0, requestLine.protocolEnd);
 

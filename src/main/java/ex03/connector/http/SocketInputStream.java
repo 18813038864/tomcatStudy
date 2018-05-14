@@ -1,9 +1,10 @@
 package ex03.connector.http;
 
+import org.apache.catalina.util.StringManager;
+
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.EOFException;
-import org.apache.catalina.util.StringManager;
 
 /**
  * Extends InputStream to be more efficient reading lines during HTTP
@@ -122,8 +123,7 @@ public class SocketInputStream extends InputStream {
      * read operations, or if the given buffer is not big enough to accomodate
      * the whole line.
      */
-    public void readRequestLine(HttpRequestLine requestLine)
-        throws IOException {
+    public void readRequestLine(HttpRequestLine requestLine) throws IOException {
 
         // Recycling check
         if (requestLine.methodEnd != 0)
@@ -139,8 +139,7 @@ public class SocketInputStream extends InputStream {
             }
         } while ((chr == CR) || (chr == LF));
         if (chr == -1)
-            throw new EOFException
-                (sm.getString("requestStream.readline.error"));
+            throw new EOFException(sm.getString("requestStream.readline.error"));
         pos--;
 
         // Reading the method name
@@ -161,16 +160,14 @@ public class SocketInputStream extends InputStream {
                     requestLine.method = newBuffer;
                     maxRead = requestLine.method.length;
                 } else {
-                    throw new IOException
-                        (sm.getString("requestStream.readline.toolong"));
+                    throw new IOException(sm.getString("requestStream.readline.toolong"));
                 }
             }
             // We're at the end of the internal buffer
             if (pos >= count) {
                 int val = read();
                 if (val == -1) {
-                    throw new IOException
-                        (sm.getString("requestStream.readline.error"));
+                    throw new IOException(sm.getString("requestStream.readline.error"));
                 }
                 pos = 0;
                 readStart = 0;
@@ -289,8 +286,7 @@ public class SocketInputStream extends InputStream {
      * read operations, or if the given buffer is not big enough to accomodate
      * the whole line.
      */
-    public void readHeader(HttpHeader header)
-        throws IOException {
+    public void readHeader(HttpHeader header) throws IOException {
 
         // Recycling check
         if (header.nameEnd != 0)
@@ -461,8 +457,7 @@ public class SocketInputStream extends InputStream {
     /**
      * Read byte.
      */
-    public int read()
-        throws IOException {
+    public int read() throws IOException {
         if (pos >= count) {
             fill();
             if (pos >= count)
@@ -498,8 +493,7 @@ public class SocketInputStream extends InputStream {
      * Returns the number of bytes that can be read from this input
      * stream without blocking.
      */
-    public int available()
-        throws IOException {
+    public int available() throws IOException {
         return (count - pos) + is.available();
     }
 
@@ -507,8 +501,7 @@ public class SocketInputStream extends InputStream {
     /**
      * Close the input stream.
      */
-    public void close()
-        throws IOException {
+    public void close() throws IOException {
         if (is == null)
             return;
         is.close();
@@ -523,8 +516,7 @@ public class SocketInputStream extends InputStream {
     /**
      * Fill the internal buffer using data from the undelying input stream.
      */
-    protected void fill()
-        throws IOException {
+    protected void fill() throws IOException {
         pos = 0;
         count = 0;
         int nRead = is.read(buf, 0, buf.length);
