@@ -12,12 +12,12 @@ public class PrimitiveServlet implements Servlet {
     throws ServletException, IOException {
 //    System.out.println("from service");
     PrintWriter out = response.getWriter();
-    String successMessage =
-            "HTTP/1.1 200 OK\r\n" +
-//                "Content-Type: text/html\r\n" +
-//                "Content-Length:"+file.length()+"\r\n" +
-                    "\r\n";
-    out.println(successMessage);
+//    String successMessage =
+//            "HTTP/1.1 200 OK\r\n" +
+////                "Content-Type: text/html\r\n" +
+////                "Content-Length:"+file.length()+"\r\n" +
+//                    "\r\n";
+    out.println("HTTP/1.1 200 OK");
     out.println("Hello. Roses are red.");
     out.print("Violets are blue.");
   }
