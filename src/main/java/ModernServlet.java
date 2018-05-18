@@ -13,12 +13,12 @@ public class ModernServlet extends HttpServlet {
     throws ServletException, IOException {
     response.setContentType("text/html");
     PrintWriter out = response.getWriter();
-//    String successMessage =
-//            "HTTP/1.1 200 OK\r\n" +
-////                "Content-Type: text/html\r\n" +
-////                "Content-Length:"+file.length()+"\r\n" +
-//                    "\r\n";
-//    out.println(successMessage);
+    String successMessage =
+            "HTTP/1.1 200 OK\r\n" +
+//                "Content-Type: text/html\r\n" +
+//                "Content-Length:"+file.length()+"\r\n" +
+                    "\r\n";
+    out.println(successMessage);
     out.println("<html>");
     out.println("<head>");
     out.println("<title>Modern Servlet</title>");
