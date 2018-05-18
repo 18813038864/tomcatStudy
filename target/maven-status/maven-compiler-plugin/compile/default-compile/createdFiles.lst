@@ -6,6 +6,7 @@ ex03\ServletProcessor.class
 ex01\HttpServer.class
 ex03\connector\http\HttpRequestFacade.class
 ex03\connector\http\HttpProcessor.class
+ModernServlet.class
 ex03\StaticResourceProcessor.class
 ex02\HttpServer2.class
 ex02\Request.class
