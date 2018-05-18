@@ -1,26 +1,15 @@
 package ex03.connector.http;
 
-import ex03.connector.ResponseWriter;
 import ex03.connector.ResponseStream;
+import ex03.connector.ResponseWriter;
+import org.apache.catalina.util.CookieTools;
 
-import java.io.OutputStream;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.File;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.util.CookieTools;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class HttpResponse implements HttpServletResponse {
 
@@ -304,6 +293,12 @@ public class HttpResponse implements HttpServletResponse {
     byte[] bytes = new byte[BUFFER_SIZE];
     FileInputStream fis = null;
     try {
+      String successMessage =
+              "HTTP/1.1 200 OK\r\n" +
+//                "Content-Type: text/html\r\n" +
+//                "Content-Length:"+file.length()+"\r\n" +
+                      "\r\n";
+      output.write(successMessage.getBytes());
       /* request.getUri has been replaced by request.getRequestURI */
       File file = new File(Constants.WEB_ROOT, request.getRequestURI());
       fis = new FileInputStream(file);
@@ -469,8 +464,7 @@ public class HttpResponse implements HttpServletResponse {
   public PrintWriter getWriter() throws IOException {
     ResponseStream newStream = new ResponseStream(this);
     newStream.setCommit(false);
-    OutputStreamWriter osr =
-      new OutputStreamWriter(newStream, getCharacterEncoding());
+    OutputStreamWriter osr = new OutputStreamWriter(newStream, getCharacterEncoding());
     writer = new ResponseWriter(osr);
     return writer;
   }
